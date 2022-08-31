@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
@@ -90,7 +88,7 @@ public class MapperTest {
             System.out.println(note);
         }
 
-        Note note =noteMapper.selectById(1);
+        Note note = noteMapper.selectById(1);
         System.out.println(note);
     }
 
