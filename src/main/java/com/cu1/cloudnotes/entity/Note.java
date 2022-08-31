@@ -12,7 +12,7 @@ import java.util.Date;
 public class Note {
 
     private int id;
-    private int userId;
+    private int categoryId;
     private String title;
     private String content;
     private int status;
