@@ -2,12 +2,12 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: mysql://8.142.92.127/community?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: mysql://8.142.92.127/cloudNotes?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource # 配置 druid 数据源
 
-
-    #Spring Boot    #druid
+    #Spring Boot
+    #druid
     initialSize: 5
     minIdle: 5
     maxActive: 20
@@ -31,4 +31,3 @@ mybatis:
     map-underscore-to-camel-case: true
     # 底层自动生成 Id 并回填
     use-generated-keys: true
-  # type-aliases-package: com.cu1.pojo 扫描包
