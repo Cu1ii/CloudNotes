@@ -1,5 +1,6 @@
 package com.cu1.cloudnotes.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cu1.cloudnotes.annotation.LoginRequired;
 import com.cu1.cloudnotes.entity.User;
 import com.cu1.cloudnotes.service.UserService;
@@ -55,20 +56,22 @@ public class UserController implements CloudNoteConstant {
      */
     @LoginRequired
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
-    public String uploadHeader(MultipartFile headerImage, Model model) {
-
+    public JSONObject uploadHeader(MultipartFile headerImage) {
+        JSONObject jsonObject = new JSONObject();
         //文件不存在
         if (headerImage == null) {
-            model.addAttribute("error", "您还没有选择图片");
-            return "site/setting";
+            jsonObject.put("resultCode", "error");
+            jsonObject.put("msg", "您还没有选择图片");
+            return jsonObject;
         }
 
         //获取传的文件的原始名字
         String filename = headerImage.getOriginalFilename();
         String suffix = filename.substring(filename.lastIndexOf("."));
         if (StringUtils.isBlank(suffix)) {
-            model.addAttribute("error", "文件格式不正确");
-            return "site/setting";
+            jsonObject.put("resultCode", "error");
+            jsonObject.put("msg", "文件格式不正确");
+            return jsonObject;
         }
         //生成随机文件名
         filename = NoteUtil.generateUUID() + suffix;
@@ -89,7 +92,9 @@ public class UserController implements CloudNoteConstant {
         //允许 Web 访问的路径
         String headerUrl = domain + contextPath + "/user" + "/header/" + filename;
         userService.updateHeader(user.getId(), headerUrl);
-        return "redirect:/index";
+        jsonObject.put("resultCode", "success");
+        jsonObject.put("headerUrl", headerUrl);
+        return jsonObject;
     }
 
     @RequestMapping(path = "/header/{filename}", method = RequestMethod.GET)

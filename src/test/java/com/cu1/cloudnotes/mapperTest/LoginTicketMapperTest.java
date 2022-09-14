@@ -51,13 +51,13 @@ public class LoginTicketMapperTest {
 
     @Test
     void selectLoginTicketTest() {
-        LoginTicket ticket1 = loginTicketMapper.selectByTicket(ticket);
+        LoginTicket ticket1 = loginTicketMapper.selectByTicket("6ffe6259b2df43e09643c46cacc735fe");
         System.out.println(ticket1);
     }
 
     @Test
     void updateLoginTicketTest() {
-        int i = loginTicketMapper.updateStatus(ticket, 0);
+        int i = loginTicketMapper.updateStatus("6ffe6259b2df43e09643c46cacc735fe", 0);
         System.out.println(i);
     }
 
