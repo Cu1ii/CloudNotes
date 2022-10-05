@@ -1,3 +1,5 @@
+package com.cu1.cloudnotes.utils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

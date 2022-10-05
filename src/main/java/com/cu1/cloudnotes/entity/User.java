@@ -21,9 +21,9 @@ public class User {
     // 用户激活状态
     private int    status;
 
+    private String activationCode;
     // 头像返回路径 做补充
     private String headerUrl;
-    private String activationCode;
     private Date   createTime;
 
 }
