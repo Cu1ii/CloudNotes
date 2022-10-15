@@ -7,6 +7,7 @@ import com.cu1.cloudnotes.dao.NoteMapper;
 import com.cu1.cloudnotes.dao.UserMapper;
 import com.cu1.cloudnotes.entity.Note;
 import com.cu1.cloudnotes.entity.User;
+import com.cu1.cloudnotes.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,15 +24,17 @@ public class UserMapperTest {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     public void testInsertUser() {
         User user = new User();
-        user.setUsername("test");
-        user.setPassword("123456");
-        user.setSalt("abc");
-        user.setEmail("test@qq.com");
+        user.setUsername("admin");
+        user.setPassword("admin");
+        user.setEmail("bigw@163.com");
         user.setHeaderUrl("http://www.nowcoder.com/101.png");
-        user.setCreateTime(new Date());
+        userService.register(user);
 
         int rows = userMapper.insertUser(user);
         System.out.println(rows);

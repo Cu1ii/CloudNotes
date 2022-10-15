@@ -13,5 +13,6 @@ public class Category {
     private int id;
     private int userId;
     private String categoryName;
+    private String categoryCoverUrl;
     private Date createTime;
 }
