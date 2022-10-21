@@ -2,6 +2,7 @@ package com.cu1.cloudnotes.utils;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.cu1.cloudnotes.entity.Category;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
@@ -48,5 +49,14 @@ public class NoteUtil {
         return getJsonString(code, null, null);
     }
 
+
+    public static JSONObject getCategoryToJsonObject(final Category category) {
+        JSONObject result = new JSONObject();
+        result.put("id", category.getId());
+        result.put("userId", category.getUserId());
+        result.put("categoryName", category.getCategoryName());
+        result.put("categoryCoverUrl", category.getCategoryCoverUrl());
+        return result;
+    }
 
 }

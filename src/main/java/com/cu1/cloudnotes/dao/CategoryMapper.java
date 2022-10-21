@@ -11,9 +11,13 @@ public interface CategoryMapper {
 
     List<Category> selectByUserId(int userId);
 
-    int deleteByCategoryName(int id);
+    List<String> selectCategoryCoverUrlByUserId(int userId);
 
-    int updateCategoryName(int id,String categoryName);
+    int deleteByCategoryId(int id);
+
+    int updateCategoryName(int id, String categoryName);
+
+    int updateCategoryCoverUrl(int id, String categoryCoverUrl);
 
     int insertCategory(Category category);
 }

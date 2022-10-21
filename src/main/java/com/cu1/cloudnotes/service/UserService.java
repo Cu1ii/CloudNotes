@@ -81,8 +81,7 @@ public class UserService implements CloudNoteConstant {
         user.setSalt(NoteUtil.generateUUID().substring(0, 5));
         user.setPassword(NoteUtil.MD5(user.getPassword()));
 
-        //初始用户的状态为未激活
-        user.setStatus(0);
+        user.setStatus(1);
         //获取激活码
         user.setActivationCode(NoteUtil.generateUUID());
         //给用户设置随机头像
@@ -93,15 +92,15 @@ public class UserService implements CloudNoteConstant {
 
         userMapper.insertUser(user);
 
-        //给用户发激活邮件
-        Context context = new Context();
-        context.setVariable("email", user.getEmail());
-        // 设置以什么路径发送邮件
-        // http://localhost:8080/community/activation/101(用户 id)/code(激活码)
-        String url = domain + contextPath + "/activation/" + user.getId() + "/" + user.getActivationCode();
-        context.setVariable("url", url);
-        String content = templateEngine.process("/mail/activation", context);
-        mailClient.sendMail(user.getEmail(), "激活账号", content); //发送邮件
+//        //给用户发激活邮件
+//        Context context = new Context();
+//        context.setVariable("email", user.getEmail());
+//        // 设置以什么路径发送邮件
+//        // http://localhost:8080/community/activation/101(用户 id)/code(激活码)
+//        String url = domain + contextPath + "/activation/" + user.getId() + "/" + user.getActivationCode();
+//        context.setVariable("url", url);
+//        String content = templateEngine.process("/mail/activation", context);
+//        mailClient.sendMail(user.getEmail(), "激活账号", content); //发送邮件
 
         return map;
     }
@@ -168,16 +167,20 @@ public class UserService implements CloudNoteConstant {
             return map;
         }
 
+        map.put("userId", user.getId());
+        map.put("username", user.getUsername());
+        map.put("headerUrl", user.getHeaderUrl());
+
         //生成登录凭证
-        LoginTicket loginTicket = new LoginTicket();
-        loginTicket.setUserId(user.getId());
-        loginTicket.setTicket(NoteUtil.generateUUID());
-        loginTicket.setStatus(0);
-        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 1000));
-        loginTicketMapper.insertLoginTicket(loginTicket);
-
-
-        map.put("ticket", loginTicket.getTicket());
+//        LoginTicket loginTicket = new LoginTicket();
+//        loginTicket.setUserId(user.getId());
+//        loginTicket.setTicket(NoteUtil.generateUUID());
+//        loginTicket.setStatus(0);
+//        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 1000));
+//        loginTicketMapper.insertLoginTicket(loginTicket);
+//
+//
+//        map.put("ticket", loginTicket.getTicket());
         return map;
     }
 
