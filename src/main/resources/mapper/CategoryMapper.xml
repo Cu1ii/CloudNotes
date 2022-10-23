@@ -9,7 +9,7 @@
     <sql id="insertFields">
         user_id,category_name,create_time, category_cover_url
     </sql>
-    <select id="selectById" resultType="com.cu1.cloudnotes.entity.Category">
+    <select id="selectByUserId" resultType="com.cu1.cloudnotes.entity.Category">
         select <include refid="selectFields"> </include>
         from category
         where user_id = #{userId}

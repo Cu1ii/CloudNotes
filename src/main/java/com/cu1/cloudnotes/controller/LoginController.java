@@ -69,7 +69,7 @@ public class LoginController implements CloudNoteConstant {
 
     // http://localhost:8080/community/activation/101(用户 id)/code(激活码)
     @RequestMapping(path = "/activation/{userId}/{code}", method = RequestMethod.GET)
-    public String  activation(Model model,
+    public String activation(Model model,
                              @PathVariable("userId") int userId,
                              @PathVariable("code") String code) {
         int result = userService.activation(userId, code);
@@ -88,7 +88,7 @@ public class LoginController implements CloudNoteConstant {
         return jsonObject.toJSONString();
     }
 
-        @RequestMapping(path = "/login", method = RequestMethod.POST)
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(@RequestParam String username, @RequestParam String password) {
         JSONObject jsonObject = new JSONObject();
         //检查账号 密码
@@ -99,7 +99,9 @@ public class LoginController implements CloudNoteConstant {
         jsonObject.put("userId", map.get("userId"));
         jsonObject.put("username", map.get("username"));
         jsonObject.put("headerUrl", map.get("headerUrl"));
-            System.out.println(jsonObject.toJSONString());
+
+        System.out.println(jsonObject.toJSONString());
+
         return jsonObject.toJSONString();
     }
 
