@@ -19,7 +19,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/showAll/{userId}")
+    @GetMapping("/showall/{userId}")
     public List<Category> showAllCategory(@PathVariable("userId") int userId) {
         return categoryService.getAllCategory(userId);
     }
@@ -44,14 +44,14 @@ public class CategoryController {
 
     @PostMapping("/updateName/{categoryId}")
     public String updateCategoryName(@PathVariable int categoryId,
-                                     @RequestParam String newName){
-        categoryService.updateCategoryName(categoryId,newName);
+                                     @RequestParam String newName) {
+        categoryService.updateCategoryName(categoryId, newName);
         return NoteUtil.getJsonString(0, "修改分类名称成功!");
     }
 
     @PostMapping("/updateCover/{categoryId}")
     public String updateCoverUrl(@PathVariable int categoryId,
-                                 @RequestParam String newUrl){
+                                 @RequestParam String newUrl) {
         categoryService.changeCategoryCoverUrl(categoryId, newUrl);
         return NoteUtil.getJsonString(0, "修改封面成功!");
     }
