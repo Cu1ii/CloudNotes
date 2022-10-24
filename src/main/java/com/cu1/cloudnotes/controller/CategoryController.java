@@ -1,5 +1,6 @@
 package com.cu1.cloudnotes.controller;
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.cu1.cloudnotes.entity.Category;
 import com.cu1.cloudnotes.service.CategoryService;
@@ -27,6 +28,8 @@ public class CategoryController {
     @PostMapping("/add")
     public String addCategory(@RequestParam int userId,
                               @RequestParam String categoryName) {
+        if (categoryService.containsCategoryName(categoryName))
+            return NoteUtil.getJsonString(1,"分类名称已存在");
         Category category = new Category();
         category.setCategoryName(categoryName);
         category.setUserId(userId);
@@ -45,6 +48,8 @@ public class CategoryController {
     @PostMapping("/updateName/{categoryId}")
     public String updateCategoryName(@PathVariable int categoryId,
                                      @RequestParam String newName) {
+        if (categoryService.containsCategoryName(newName))
+            return NoteUtil.getJsonString(1, "分类名称不可重复!");
         categoryService.updateCategoryName(categoryId, newName);
         return NoteUtil.getJsonString(0, "修改分类名称成功!");
     }

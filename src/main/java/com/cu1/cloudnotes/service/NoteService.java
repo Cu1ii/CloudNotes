@@ -12,7 +12,7 @@ public class NoteService {
     @Autowired
     private NoteMapper noteMapper;
 
-    public List<Note> findAllNote(int categoryId) {
+    public List<Note> findAllNotes(int categoryId) {
         return noteMapper.selectByCategoryId(categoryId);
     }
 
@@ -28,7 +28,7 @@ public class NoteService {
         return noteMapper.deleteById(id);
     }
 
-    public int updateStatus(int id, int status) {
+    public int updateNoteStatus(int id, int status) {
         return noteMapper.updateStatus(id, status);
     }
 

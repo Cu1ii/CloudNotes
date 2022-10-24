@@ -11,6 +11,7 @@ public interface CategoryMapper {
 
     List<Category> selectByUserId(int userId);
 
+    Category selectByCategoryName(String categoryName);
     List<String> selectCategoryCoverUrlByUserId(int userId);
 
     int deleteByCategoryId(int id);

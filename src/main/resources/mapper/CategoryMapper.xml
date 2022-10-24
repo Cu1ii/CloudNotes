@@ -14,11 +14,16 @@
         from category
         where user_id = #{userId}
     </select>
+    <select id="selectByCategoryName" resultType="com.cu1.cloudnotes.entity.Category">
+        select <include refid="selectFields"> </include>
+        from category
+        where category_name = #{categoryName}
+    </select>
 
     <select id="selectCategoryCoverUrlByUserId" resultType="String">
 
         select  <include refid="selectFields"> </include>
-        from cloudNotes.category
+        from category
         where category.user_id = #{userId}
 
     </select>

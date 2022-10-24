@@ -22,6 +22,13 @@ public class CategoryService {
         return categories;
     }
 
+    public boolean containsCategoryName(String categoryName){
+        Category category = categoryMapper.selectByCategoryName(categoryName);
+        if (category == null)
+            return false;
+        return true;
+    }
+
 
     public int removeCategory(int categoryId) {
         return categoryMapper.deleteByCategoryId(categoryId);
